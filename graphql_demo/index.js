@@ -106,14 +106,25 @@ const typeDefs = gql`
     allBooks(author: String, genre: String): [Book!]!
     allAuthors: [Author!]!
   }
+  
+  type Mutation {
+    addBook(
+      title: String!
+      published: Int
+      author: String
+      genres: [String]
+    ):Book
+  }
 `
+
+const { v1: uuidv1 } = require('uuid');
 
 const resolvers = {
   Query: {
     bookCount: () => books.length,
     authorCount: () => authors.length,
     allBooks: (root, args) => {
-      let ret = books
+      let ret = [...books]
       if (args.author) {
         ret = ret.filter(b => b.author === args.author)
       }
@@ -125,6 +136,24 @@ const resolvers = {
       return ret
     },
     allAuthors: () => authors
+  },
+
+  Mutation: {
+    addBook: (root, args) => {
+      if (args.author) {
+        const author = args.author
+
+        if (!authors.find(a => a.name === author)) {
+          const newAuthor = {id: uuidv1(), name: author}
+          authors = authors.concat(newAuthor)
+        }
+      }
+
+      const newBook = {...args, id: uuidv1() }
+      books = books.concat(newBook)
+
+      return newBook
+    }
   },
 
   Author: {
