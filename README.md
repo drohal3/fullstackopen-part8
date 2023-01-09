@@ -89,3 +89,34 @@ should return
 
 **Solution:**
 bookCount under Authors was implemented.
+
+## Exercise 8.4: Books of an author
+**Task:**
+Modify the allBooks query so that a user can give an optional parameter author. The response should include only books written by that author.
+
+For example query
+```
+query {
+allBooks(author: "Robert Martin") {
+title
+}
+}
+```
+should return
+```
+{
+"data": {
+"allBooks": [
+{
+"title": "Clean Code"
+},
+{
+"title": "Agile software development"
+}
+]
+}
+}
+```
+
+**Solution:**
+Optional parameter author for allBooks was implemented.
