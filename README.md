@@ -14,8 +14,8 @@ query {
 ```
 should return
 ```
- {
-  "data": {
+{
+ "data": {
   "bookCount": 7,
   "authorCount": 5
  }
@@ -24,3 +24,22 @@ should return
 
 **Solution:**
 Resolvers and TypeDefs were defined.
+
+## Exercise 8.2: All books
+**Task:**
+Implement query allBooks, which returns the details of all books.
+
+In the end, the user should be able to do the following query:
+```
+query {
+ allBooks {
+  title
+  author
+  published
+  genres
+ }
+}
+```
+
+**Solution:**
+Resolver for allBooks was defined.
