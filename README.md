@@ -120,3 +120,53 @@ should return
 
 **Solution:**
 Optional parameter author for allBooks was implemented.
+
+## Exercise 8.5: Books by genre
+Modify the query allBooks so that a user can give an optional parameter genre. The response should include only books of that genre.
+
+For example query
+```
+query {
+allBooks(genre: "refactoring") {
+title
+author
+}
+}
+```
+should return
+```
+{
+"data": {
+"allBooks": [
+{
+"title": "Clean Code",
+"author": "Robert Martin"
+},
+{
+"title": "Refactoring, edition 2",
+"author": "Martin Fowler"
+},
+{
+"title": "Refactoring to patterns",
+"author": "Joshua Kerievsky"
+},
+{
+"title": "Practical Object-Oriented Design, An Agile Primer Using Ruby",
+"author": "Sandi Metz"
+}
+]
+}
+}
+```
+The query must work when both optional parameters are given:
+```
+query {
+allBooks(author: "Robert Martin", genre: "refactoring") {
+title
+author
+}
+}
+```
+
+**Solution:**
+genre optional parameter to allBooks was implemented.
