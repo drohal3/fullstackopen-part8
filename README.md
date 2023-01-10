@@ -263,3 +263,20 @@ If the author is not in the system, null is returned:
 
 **Solution:**
 editAuthor mutation implemented.
+
+## Exercise 8.8: Authors view
+**Task:**
+*Take [this project](https://github.com/fullstack-hy2020/library-frontend) as a start for your application.*
+
+Implement an Authors view to show the details of all authors on a page.
+
+**Solution:**
+Appolo client was installed with the following command
+```
+ npm install @apollo/client graphql
+```
+and taken into use.
+
+
+
+
