@@ -277,6 +277,9 @@ Apolo client was installed with the following command
 ```
 and taken into use.
 
+## Exercise 8.9: Books view
+**Task:**
+Implement a Books view to show on a page all other details of all books except their genres.
 
-
-
+**Solution:**
+Implemented the books view - similar to the previous exercise.
