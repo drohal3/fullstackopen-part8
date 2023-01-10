@@ -271,7 +271,7 @@ editAuthor mutation implemented.
 Implement an Authors view to show the details of all authors on a page.
 
 **Solution:**
-Appolo client was installed with the following command
+Apolo client was installed with the following command
 ```
  npm install @apollo/client graphql
 ```
