@@ -283,3 +283,12 @@ Implement a Books view to show on a page all other details of all books except t
 
 **Solution:**
 Implemented the books view - similar to the previous exercise.
+
+## Exercise 8.10: Adding a book
+**Task:**
+Implement a possibility to add new books to your application.
+
+Make sure that the Authors and Books views are kept up to date after a new book is added.
+
+**Solution:**
+Implemented as instructed - with refetchQueries option.
