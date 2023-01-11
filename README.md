@@ -301,3 +301,14 @@ Make sure that the Authors view is kept up to date after setting a birth year.
 
 **Solution:**
 Implemented in similar way than the previous exercise.
+
+## Exercise 8.12: Authors birth year advanced
+**Task:**
+Change the birth year form so that a birth year can be set only for an existing author. Use select tag, react select, or some other mechanism.
+
+**Solution:**
+Implemented using [react-select](https://react-select.com/home).
+
+```
+npm install react-select
+```

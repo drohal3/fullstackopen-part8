@@ -1,6 +1,6 @@
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { useState } from 'react'
-import {ALL_BOOKS} from "./Books";
+import Select from 'react-select'
 
 
 export const ALL_AUTHORS = gql`
@@ -26,8 +26,13 @@ mutation setYearOfBirth($name: String!, $born: Int!) {
 `
 
 const AuthorYearOfBirthForm = () => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState(null)
   const [year, setYear] = useState('')
+
+  const authors = useQuery(ALL_AUTHORS)
+
+  const options = authors.loading ? [] : authors.data.allAuthors.map(a => ({value: a.name, label: a.name}))
+
   const [ setYearOfBirth ] = useMutation(SET_YEAR_OF_BIRTH, {refetchQueries: [{ query: ALL_AUTHORS }]})
 
   const submit = async (event) => {
@@ -36,7 +41,6 @@ const AuthorYearOfBirthForm = () => {
     await setYearOfBirth({variables: {name, born}})
     console.log('set year of birth...')
 
-    setName('')
     setYear('')
   }
 
@@ -47,9 +51,8 @@ const AuthorYearOfBirthForm = () => {
         <div>
           <div>
             name
-            <input
-              value={name}
-              onChange={({target}) => setName(target.value)}
+            <Select options={options}
+              onChange={(selectedOption) => setName(selectedOption.value)}
             />
           </div>
           <div>
