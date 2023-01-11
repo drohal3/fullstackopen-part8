@@ -1,5 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server')
 
+// run node index.js to run it in local
+
 let authors = [
   {
     name: 'Robert Martin',

@@ -292,3 +292,12 @@ Make sure that the Authors and Books views are kept up to date after a new book 
 
 **Solution:**
 Implemented as instructed - with refetchQueries option.
+
+## Exercise 8.11: Authors birth year
+**Task:**
+Implement a possibility to set authors birth year. You can create a new view for setting the birth year, or place it on the Authors view:
+
+Make sure that the Authors view is kept up to date after setting a birth year.
+
+**Solution:**
+Implemented in similar way than the previous exercise.
