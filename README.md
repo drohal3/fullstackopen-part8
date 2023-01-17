@@ -362,3 +362,10 @@ You might find [this](https://docs.mongodb.com/manual/reference/operator/query/i
 
 **Solution:**
 Implemented together with the previous exercise.
+
+## Exercise 8.15 Database, part 3
+**Task:**
+Complete the program so that database validation errors (e.g. book title or author name being too short) are handled sensibly. This means that they cause UserInputError with a suitable error message to be thrown.
+
+**Solution:**
+Implemented as instructed.

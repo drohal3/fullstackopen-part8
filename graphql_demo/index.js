@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server')
+const { ApolloServer, UserInputError, gql } = require('apollo-server')
 const logger = require('./utils/logger')
 
 const Author = require('./models/author')
@@ -92,7 +92,14 @@ const resolvers = {
       if (!author) {
         logger.info("Creating new author")
         const newAuthor = new Author({name: args.author, born: 0})
-        author = await newAuthor.save()
+        try {
+          author = await newAuthor.save()
+        } catch (e) {
+          throw new UserInputError(e.message, {
+            invalidArgs: args,
+          })
+        }
+
         logger.info('new author', author)
       }
 
@@ -100,7 +107,16 @@ const resolvers = {
 
       const newBook = new Book({author, title: args.title, published: args.published, genres: args.genres})
 
-      const book = await newBook.save()
+      let book = null
+
+      try {
+        book = await newBook.save()
+      } catch (e) {
+        throw new UserInputError(e.message, {
+          invalidArgs: args,
+        })
+      }
+
 
       logger.info('newBook', book)
 
@@ -108,17 +124,35 @@ const resolvers = {
     },
 
     editAuthor: async (root, args) => {
-      const author = await Author.findOne({name: args.name})//authors.find(a => a.name === authorName)
+      const filter = {name: args.name}
+
+      const author = await Author.findOne(filter)
 
       if (!author) {
-        return null
+        return null // actually, null can't be returned (not nullable mutation), but returning it from habit
       }
 
-      const ret = await author.set({born: args.setBornTo}).save()
+      const updateAuthor = {
+        $set: {
+          ...author.document, born: args.setBornTo
+        },
+      }
+
+      logger.info('updateAuthor', updateAuthor)
+
+      try {
+        await Author.updateOne(filter, updateAuthor, {} )
+      } catch (e) {
+        throw new UserInputError(e.message, {
+          invalidArgs: args,
+        })
+      }
+
+      const ret = await Author.findOne({filter})
 
       logger.info('edited author', ret)
 
-      return author
+      return ret
     }
   },
 
