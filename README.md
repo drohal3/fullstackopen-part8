@@ -354,3 +354,11 @@ editAuthor(name: String!, setBornTo: Int!): Author
 **Solution:**
 Implemented as instructed.
 
+## Exercise 8.14: Database, part 2
+**Task:**
+Complete the program so that all queries (to get allBooks working with the parameter author and bookCount field of an author object is not required) and mutations work.
+
+You might find [this](https://docs.mongodb.com/manual/reference/operator/query/in/) useful.
+
+**Solution:**
+Implemented together with the previous exercise.
