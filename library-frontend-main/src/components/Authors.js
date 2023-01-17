@@ -71,6 +71,8 @@ const AuthorYearOfBirthForm = () => {
 const Authors = (props) => {
   const authors = useQuery(ALL_AUTHORS)
 
+  console.log("all authors", authors)
+
   if (!props.show) {
     return null
   }

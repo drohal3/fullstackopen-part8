@@ -4,7 +4,7 @@ import {ALL_BOOKS} from "./Books";
 import {ALL_AUTHORS} from "./Authors";
 
 const CREATE_BOOK = gql`
-mutation createBook($title: String!, $published: Int, $author: String, $genres: [String]) {
+mutation createBook($title: String!, $published: Int!, $author: String!, $genres: [String!]!) {
   addBook(
     title: $title
     published: $published
@@ -14,7 +14,10 @@ mutation createBook($title: String!, $published: Int, $author: String, $genres: 
     id
     title
     published
-    author
+    author{
+      name
+      born
+    }
     genres
   }
 }
