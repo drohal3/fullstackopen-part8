@@ -369,3 +369,45 @@ Complete the program so that database validation errors (e.g. book title or auth
 
 **Solution:**
 Implemented as instructed.
+
+## Exercise 8.16 user and logging in
+**Task:**
+Add user management to your application. Expand the schema like so:
+```
+type User {
+username: String!
+favouriteGenre: String!
+id: ID!
+}
+
+type Token {
+value: String!
+}
+
+type Query {
+// ..
+me: User
+}
+
+type Mutation {
+// ...
+createUser(
+username: String!
+favouriteGenre: String!
+): User
+login(
+username: String!
+password: String!
+): Token
+}
+```
+Create resolvers for query me and the new mutations createUser and login. Like in the course material, you can assume all users have the same hardcoded password.
+
+Make the mutations addBook and editAuthor possible only if the request includes a valid token.
+
+(Don't worry about fixing the frontend for the moment.)
+
+**Solution:**
+Implemented as instructed and thrown ForbiddenError on unauthorized editAuthor and addBook mutations.
+(requires bearer token in Authorization header)
+At this point it works only when using Apollo studio. Frontend will be fixed in the next exercises.
