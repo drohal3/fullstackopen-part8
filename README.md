@@ -411,3 +411,10 @@ Make the mutations addBook and editAuthor possible only if the request includes 
 Implemented as instructed and thrown ForbiddenError on unauthorized editAuthor and addBook mutations.
 (requires bearer token in Authorization header)
 At this point it works only when using Apollo studio. Frontend will be fixed in the next exercises.
+
+## Exercise 8.17 Listing books
+**Task:**
+After the backend changes, the list of books does not work anymore. Fix it.
+
+**Solution:**
+Used name value from Author object instead of no longer existing String value in Book object.
