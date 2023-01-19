@@ -3,6 +3,7 @@ import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 import LoginForm from "./components/LoginForm";
+import Recommended from "./components/Recommended";
 import {useApolloClient} from '@apollo/client'
 import {click} from "@testing-library/user-event/dist/click";
 
@@ -23,6 +24,7 @@ const App = () => {
   ]
 
   if (token) {
+    buttons.push({click: () => setPage('recommended'), label: 'recommended'})
     buttons.push({click: () => setPage('add'), label: 'add book'})
     buttons.push({click: () => {
       setToken(null)
@@ -46,6 +48,8 @@ const App = () => {
       <NewBook show={page === 'add'} />
 
       <LoginForm show={page === 'login'} setToken={setToken} setError={setErrorMessage} />
+
+      <Recommended show={page === 'recommended'} />
     </div>
   )
 }

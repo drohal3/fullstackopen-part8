@@ -447,8 +447,17 @@ Implemented as instructed. User logs out on page refresh at this stage of app de
 **Task:**
 Complete your application to filter the book list by genre. Your solution might look something like this:
 
+*imagine picture
+
 fullstack content
 In this exercise, the filtering can be done using just React.
 
 **Solution:**
 Implemented using GraphQL useQuery options.
+
+## Exercise 8.20 Books by genre, part 2
+**Task:**
+Implement a view which shows all the books based on the logged-in user's favourite genre.
+
+**Solution:**
+The view was implemented.
