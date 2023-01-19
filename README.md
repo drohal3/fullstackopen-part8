@@ -418,3 +418,28 @@ After the backend changes, the list of books does not work anymore. Fix it.
 
 **Solution:**
 Used name value from Author object instead of no longer existing String value in Book object.
+
+## Exercise 8.18 Log in
+**Task:**
+Adding new books and changing the birth year of an author do not work because they require a user to be logged in.
+
+Implement login functionality and fix the mutations.
+
+It is not necessary yet to handle validation errors.
+
+You can decide how the login looks on the user interface. One possible solution is to make the login form into a separate view which can be accessed through a navigation menu:
+
+*imagine picture
+
+The login form: 
+
+*imagine picture
+
+fullstack content
+When a user is logged in, the navigation changes to show the functionalities which can only be done by a logged-in user:
+
+*imagine picture
+
+**Solution:**
+Implemented as instructed. User logs out on page refresh at this stage of app development.
+
