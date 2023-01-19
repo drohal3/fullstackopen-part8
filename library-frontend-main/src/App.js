@@ -36,7 +36,7 @@ const App = () => {
   return (
     <div>
       <div>
-        {buttons.map((btn) => (<button onClick={btn.click}>{btn.label}</button> ))}
+        {buttons.map((btn) => (<button onClick={btn.click} key={btn.label}>{btn.label}</button> ))}
       </div>
 
       <Authors show={page === 'authors'} />
