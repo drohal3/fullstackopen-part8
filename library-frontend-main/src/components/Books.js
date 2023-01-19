@@ -1,18 +1,27 @@
 import { gql, useQuery } from '@apollo/client'
+import {useState} from "react";
 
 export const ALL_BOOKS = gql`
-query {
-  allBooks {
+query Query($genre: String) {
+  allBooks(genre: $genre) {
+    genres
+    id
+    published
     title
-    author{
+    author {
       name
     }
-    published
   }
 }
 `
 const Books = (props) => {
-  const books = useQuery(ALL_BOOKS)
+  const [filter, setFilter] = useState(null)
+  const books = useQuery(ALL_BOOKS, {variables: {genre: filter}})
+  const genres = books.loading
+    ? []
+    : books.data.allBooks
+      .map((book) => book.genres)
+      .reduce((acu, val) => [...acu, ...val.filter((v) => !acu.includes(v))], [])
 
   if (!props.show) {
     return null
@@ -21,6 +30,11 @@ const Books = (props) => {
   return books.loading ? (<div>loading...</div>) : (
     <div>
       <h2>books</h2>
+      <h3>Filter</h3>
+      <div>
+        {genres.map((genre) => (<button key={genre} onClick={() => setFilter(genre)}>{genre}</button>) )}
+        <button onClick={() => setFilter(null)}>reset filter</button>
+      </div>
 
       <table>
         <tbody>
@@ -38,6 +52,7 @@ const Books = (props) => {
           ))}
         </tbody>
       </table>
+
     </div>
   )
 }

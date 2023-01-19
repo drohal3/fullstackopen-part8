@@ -443,3 +443,12 @@ When a user is logged in, the navigation changes to show the functionalities whi
 **Solution:**
 Implemented as instructed. User logs out on page refresh at this stage of app development.
 
+## Exercise 8.19 Books by genre, part 1
+**Task:**
+Complete your application to filter the book list by genre. Your solution might look something like this:
+
+fullstack content
+In this exercise, the filtering can be done using just React.
+
+**Solution:**
+Implemented using GraphQL useQuery options.
