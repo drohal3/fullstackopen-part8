@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
-import {ALL_BOOKS} from "./Books";
+import {GENRES_BOOKS} from "./Books";
 import {ALL_AUTHORS} from "./Authors";
 
 const CREATE_BOOK = gql`
@@ -30,9 +30,7 @@ const NewBook = (props) => {
   const [genre, setGenre] = useState('')
   const [genres, setGenres] = useState([])
 
-  const [ createBook ] = useMutation(CREATE_BOOK, {
-    refetchQueries: [ { query: ALL_BOOKS }, { query: ALL_AUTHORS } ]
-  })
+  const [ createBook ] = useMutation(CREATE_BOOK)
 
   if (!props.show) {
     return null
@@ -41,7 +39,20 @@ const NewBook = (props) => {
   const submit = async (event) => {
     event.preventDefault()
     const publishedInt = parseInt(published)
-    await createBook({variables: {title, published: publishedInt, author, genres}})
+    await createBook({
+      variables: {title, published: publishedInt, author, genres},
+      update: (cache, {data}) => {
+        const cacheID = cache.identify(data.addBook)
+        console.log('daaataaa in update - cacheID', cacheID)
+        cache.modify({
+          fields: {
+            allBooks: (existingFieldData, { toReference }) => {
+              return [...existingFieldData, toReference(cacheID)]
+            }
+          }
+        })
+      }
+    })
     console.log('add book...')
 
 

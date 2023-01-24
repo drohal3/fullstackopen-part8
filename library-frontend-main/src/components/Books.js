@@ -2,7 +2,21 @@ import { gql, useQuery } from '@apollo/client'
 import {useState} from "react";
 
 export const ALL_BOOKS = gql`
-query Query($genre: String) {
+  query AllBooks {
+    allBooks {
+      genres
+      id
+      published
+      title
+      author {
+        name
+      }
+    }
+  }
+`
+
+export const GENRES_BOOKS = gql`
+  query AllBooks($genre: String) {
   allBooks(genre: $genre) {
     genres
     id
@@ -16,7 +30,7 @@ query Query($genre: String) {
 `
 const Books = (props) => {
   const [filter, setFilter] = useState(null)
-  const books = useQuery(ALL_BOOKS, {variables: {genre: filter}})
+  const books = useQuery(GENRES_BOOKS, {variables: {genre: filter}})
   const genres = books.loading
     ? []
     : books.data.allBooks

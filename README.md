@@ -470,3 +470,12 @@ This and the next exercises are quite challenging like it should be this late in
 
 **Solution:**
 Already done.
+
+## Exercise 8.22 Up-to-date cache and book recommendations
+**Task:**
+If you did the previous exercise, that is, fetch the books in a genre with GraphQL, ensure somehow that the books view is kept up to date. So when a new book is added, the books view is updated at least when a genre selection button is pressed.
+
+When new genre selection is not done, the view does not have to be updated.
+
+**Solution:**
+Got inspired by [this video](https://www.youtube.com/watch?v=PK1V0Vg8C5s&ab_channel=WojciechMatuszewski) to keep books and recommended views up-to-date. I did not update authors view as it was not in the scope of this exercise.

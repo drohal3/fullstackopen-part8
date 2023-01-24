@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import {ALL_BOOKS} from "./Books";
+import {GENRES_BOOKS} from "./Books";
 // Books could be reused (or abstracted)
 
 const ME = gql`
@@ -16,7 +16,7 @@ const Recommended = (props) => {
 
   const favoriteGenre = me.loading ? null : me.data.me.favouriteGenre
 
-  const recommendedBooks = useQuery(ALL_BOOKS, {variables: {genre: favoriteGenre}})
+  const recommendedBooks = useQuery(GENRES_BOOKS, {variables: {genre: favoriteGenre}})
 
   if (!props.show) {
     return null
