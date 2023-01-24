@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
-import {GENRES_BOOKS} from "./Books";
 import {ALL_AUTHORS} from "./Authors";
 
 const CREATE_BOOK = gql`
@@ -41,9 +40,9 @@ const NewBook = (props) => {
     const publishedInt = parseInt(published)
     await createBook({
       variables: {title, published: publishedInt, author, genres},
+      refetchQueries: ALL_AUTHORS,
       update: (cache, {data}) => {
         const cacheID = cache.identify(data.addBook)
-        console.log('daaataaa in update - cacheID', cacheID)
         cache.modify({
           fields: {
             allBooks: (existingFieldData, { toReference }) => {

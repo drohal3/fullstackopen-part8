@@ -41,7 +41,7 @@ const Books = (props) => {
     return null
   }
 
-  return books.loading ? (<div>loading...</div>) : (
+  return !books || books.loading ? (<div>loading...</div>) : (
     <div>
       <h2>books</h2>
       <h3>Filter</h3>
